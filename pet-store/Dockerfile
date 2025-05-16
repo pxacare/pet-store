@@ -1,4 +1,4 @@
-FROM node:20-alpine
+FROM node:24-alpine
 RUN apk add --no-cache bash
 
 RUN npm config set audit false
@@ -15,7 +15,7 @@ RUN npm ci --verbose
 
 # Install all directories and build
 COPY --chown=node:node ./ /app
-RUN chmod +x scripts/wait-for-it.sh
+RUN chmod +x scripts/wait-for-it.sh scripts/start_app.sh
 RUN npm run build 
 
 # Use "production" in NodeJs
